@@ -1,0 +1,14 @@
+.layout{
+    background-color: blue;
+    width : 300px;
+    height : 300px;
+    border : 5px solid #000;
+    text-align: center;
+}
+
+.title {
+    color : #fff;
+    font-size: 200%;
+    font-weight: 900;
+    font-family: 'Rampart One', cursive;
+}
