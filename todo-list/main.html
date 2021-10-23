@@ -17,7 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jqurery/3.5.1/jqurery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqurery/3.5.1/jqurery.min.js"></script> -->
     </head>
     <body>
        <div class="container" id="container">
@@ -40,8 +40,26 @@
             </div>
             <div class="input-group mb-3" id="input-group">
                 <input type="text" class="form-control" id="input-area">
-                <button class="btn btn-outline-secondary" type="button" id="button-area">추가</button>
+                <button class="btn btn-outline-secondary" type="button" id="button-area" onclick="x()">추가</button>
               </div>
        </div>
+    <Script>
+      let a = 100;
+      let b = 200;
+      console.log(a+b);
+
+      let str = "문자";
+      let str2 = '문자';
+      let str3 = `문자`;
+
+      console.log (`100이라고 입력해줘 ${a}`);
+      let  arr = [1,2,3,4,'문자',true,false];
+
+      // 배열에 뒤에 더 추가하기
+      arr.push ('test');
+      console.log (arr);
+      
+      let obj = {"key":"value"};
+    </Script>
    </body>
    </html>
