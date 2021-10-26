@@ -25,33 +25,59 @@
             <h3 id="title">정말 간단 TODO 리스트</h3>
             <div id="sub-container">
                 <ul class="list-group" id="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center" id="list-group-item">
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center" id="list-group-item">
                       오늘의 할 일 목록 하나!
-                      <span class="badge bg-primary rounded-pill">삭제</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center" id="list-group-item">
-                        오늘의 할 일 목록 하나!
-                        <span class="badge bg-primary rounded-pill">삭제</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center" id="list-group-item">
-                        오늘의 할 일 목록 하나!
-                        <span class="badge bg-primary rounded-pill">삭제</span>
-                      </li>
+                      <span class="badge bg-primary rounded-pill" onclick="deleteTodo()">삭제</span>
+                    </li> -->
                   </ul>
             </div>
             <div class="input-group mb-3" id="input-group">
                 <input type="text" class="form-control" id="input-area">
-                <button class="btn btn-outline-secondary" type="button" id="button-area" onclick="x()">추가</button>
+                <button class="btn btn-outline-secondary" type="button" id="button-area" onclick="addTodo()">추가</button>
               </div>
        </div>
     <Script>
-      // 유저 입력 -> 버튼 클릭 -> 값 리드 -> 리스트에 추가
-      function x() {
-        //let todo = document.getElementById("input-area").val;
+      //페이지가 처음 열리면 실행되는 기능을 넣는 방법
+      $(document).ready(function(){
+        console.log("시작")
+      })
+      
+      $.ajax({
+        url : "https://api.themoviedb.org/3/movie/popular?api_key=10923b261ba94d897ac6b81148314a3f&page=1",
+        data : {},
+        type : "GET",
+        success : function(json) {
+            console.log(json)
+        },
+        error : function(err){
+
+        }
+      })
+      // 리스트를 입력하여 추가하는 기능
+      function addTodo() {
+        //input-area라는 ID를 가진 입력창에 입력된 데이터를 todo라는 변수에 읽어둠
         let todo = $("#input-area").val();
-        console.log(todo);
+        
+        //Delete를 할 때 각 리스트를 구분하기 위해 랜덤한 데이터를 생성함
+        let id = Math.floor(Math.random() * 100000)
+        
+        //작성한 내용(todo 변수)으로 투두 리스트 내부에 목록을 추가하는 HTML코드를 입력하고 위에서 생성한 랜덤 데이터를 새로운 클래스와 onclick을 통해 같이 입력
+        let list_item = `<li class="list-group-item d-flex justify-content-between align-items-center list-${id}" id="list-group-item">
+                      ${todo}
+                      <span class="badge bg-primary rounded-pill" onclick="deleteTodo(${id})">삭제</span>
+                    </li>`
+
+        //내용을 붙여넣어주는 Jquery Code를 통해 list-group이라는 id로 작성된 위치에 위에서 만든 코드를 붙여넣음
+        $("#list-group").append(list_item)
+
+        //작성 시 랜덤으로 생성된 데이터를 통해 원하는 리스트를 삭제함 
+        //아래 Jquery 명령 자체는 코드를 지워주는 명령!
+        $("#input-area").val("")
       }
-     
+
+      function deleteTodo(id) {
+          $(".list-"+id).remove()
+      }
     </Script>
    </body>
    </html>
